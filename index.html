@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event Delegation</title>
+    <style>
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+      li {
+        padding: 10px;
+        border: 1px solid #ccc;
+        margin: 5px 0;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Event Delegation Example</h1>
+    <button id="add-item">Add List Item</button>
+    <ul id="item-list"></ul>
+
+    <script>
+      const ulElement = document.getElementById("item-list");
+      const addButton = document.getElementById("add-item");
+      let itemCount = 0;
+
+      ulElement.addEventListener("click", function (event) {
+        if (event.target.tagName === "LI") {
+          alert(`You clicked: ${event.target.textContent}`);
+        }
+      });
+
+      addButton.addEventListener("click", function () {
+        itemCount++;
+        const newItem = document.createElement("li");
+        newItem.textContent = `Item ${itemCount}`;
+        ulElement.appendChild(newItem);
+      });
+    </script>
+  </body>
+</html>
